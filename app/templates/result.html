@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Résultat Prédiction</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .container { max-width: 600px; margin: auto; }
+        .result { padding: 20px; border-radius: 10px; }
+        .risk-high { background: #ffebee; color: #c62828; }
+        .risk-low { background: #e8f5e8; color: #2e7d32; }
+        .button { background: blue; color: white; padding: 10px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Résultat de l'analyse</h1>
+        
+        <div class="result {% if result.prediction == 1 %}risk-high{% else %}risk-low{% endif %}">
+            <h2>{{ result.statut }}</h2>
+            <p>Probabilité: {{ "%.2f"|format(result.probabilite * 100) }}%</p>
+            <p>Confiance: {{ "%.2f"|format(result.confiance * 100) }}%</p>
+        </div>
+        
+        <br>
+        <a href="/" class="button">← Nouvelle prédiction</a>
+<div style="text-align: center; margin-top: 20px;">
+    <a href="/dashboard" style="color: #667eea; text-decoration: none;"> Dashboard</a>
+    &nbsp;|&nbsp;
+    <a href="/history" style="color: #667eea; text-decoration: none;"> Historique</a>
+</div>
+    </div>
+</body>
+</html>

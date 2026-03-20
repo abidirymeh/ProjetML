@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Historique des Prédictions</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { color: #333; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .stat-card h3 { font-size: 14px; margin-bottom: 10px; opacity: 0.9; }
+        .stat-card .value { font-size: 28px; font-weight: bold; }
+        
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .data-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+        .data-table td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .data-table tr:hover { background: #f8f9ff; }
+        
+        .badge-fidele {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .badge-churn {
+            background: #ffebee;
+            color: #c62828;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        .button-outline {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .stat-card .value { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Historique des Prédictions</h1>
+        <div class="subtitle">Suivi des clients analysés</div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3> TOTAL</h3>
+                <div class="value">{{ stats.total }}</div>
+            </div>
+            <div class="stat-card">
+                <h3> CLIENTS À RISQUE</h3>
+                <div class="value">{{ stats.churn_count }}</div>
+            </div>
+            <div class="stat-card">
+                <h3> PROBABILITÉ MOYENNE</h3>
+                <div class="value">{{ "%.1f"|format(stats.avg_probabilite) }}%</div>
+            </div>
+            <div class="stat-card">
+                <h3> DERNIÈRE</h3>
+                <div class="value" style="font-size: 14px;">{{ stats.last_prediction }}</div>
+            </div>
+        </div>
+        
+        <div class="table-wrapper">
+            {% if history_data|length > 0 %}
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Recency</th>
+                        <th>Frequency</th>
+                        <th>Monetary</th>
+                        <th>Age</th>
+                        <th>Satisfaction</th>
+                        <th>Tickets</th>
+                        <th>Prédiction</th>
+                        <th>Probabilité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in history_data %}
+                    <tr>
+                        <td>{{ row.Date }}</td>
+                        <td>{{ "%.0f"|format(row.Recency) }} j</td>
+                        <td>{{ "%.0f"|format(row.Frequency) }}</td>
+                        <td>{{ "%.2f"|format(row.Monetary) }} €</td>
+                        <td>{{ "%.0f"|format(row.Age) }}</td>
+                        <td>{{ "%.1f"|format(row.Satisfaction) }}</td>
+                        <td>{{ "%.0f"|format(row.Tickets) }}</td>
+                        <td>
+                            {% if row.Prediction == 0 %}
+                            <span class="badge-fidele"> Fidèle</span>
+                            {% else %}
+                            <span class="badge-churn"> Churn</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ "%.1f"|format(row.Probabilite * 100) }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div style="text-align: center; padding: 40px; color: #999;">
+                 Aucune prédiction pour le moment
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="buttons">
+            <a href="/" class="button"> Nouvelle prédiction</a>
+            <a href="/dashboard" class="button button-outline"> Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

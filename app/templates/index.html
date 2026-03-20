@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prédiction Churn Client</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        max-width: 500px;
+        width: 100%;
+    }
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        margin: 8px 0 20px;
+    }
+    button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+    button:hover { transform: translateY(-2px); }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1> Prédiction de Churn Client</h1>
+        <form action="/predict" method="post">
+            <label>Recency (jours depuis dernier achat):</label>
+            <input type="number" name="F2" required>
+            
+            <label>Frequency (nombre de commandes):</label>
+            <input type="number" name="F3" required>
+            
+            <label>MonetaryTotal (dépense totale):</label>
+            <input type="number" step="0.01" name="F4" required>
+            <!-- Ajoutez après MonetaryTotal -->
+<div class="form-group">
+    <label> Age du client:</label>
+    <input type="number" name="F31" placeholder="Ex: 35">
+</div>
+
+<div class="form-group">
+    <label> Satisfaction Score (0-5):</label>
+    <input type="number" step="0.1" name="F36" placeholder="Ex: 4.5">
+</div>
+
+<div class="form-group">
+    <label> Tickets support:</label>
+    <input type="number" name="F35" placeholder="Ex: 1">
+</div>
+            <button type="submit">Prédire</button>
+        </form>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a href="/dashboard" style="color: #667eea; text-decoration: none;"> Voir le dashboard</a>
+    &nbsp;|&nbsp;
+    <a href="/history" style="color: #667eea; text-decoration: none;"> Historique des prédictions</a>
+</div>
+    </div>
+</body>
+</html>
