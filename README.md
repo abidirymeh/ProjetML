@@ -123,36 +123,29 @@ http://127.0.0.1:5000
 
 ##  Technologies utilisées
 
+- **Python** : 3.10  
+- **Jupyter Notebook** : ipykernel 7.2.0, ipython 8.38.0  
+- **VS Code** : 1.113.0  
 
-Langage et environnement
-Python 3.10
-Jupyter Notebook (ipykernel 7.2.0, ipython 8.38.0)
-VS Code 1.113.0
+- **NumPy** : 2.2.6 (calculs numériques et vectoriels)  
+- **Pandas** : 2.3.3 (manipulation et analyse de données tabulaires)  
+- **SciPy** : 1.15.3 (calculs scientifiques)  
 
-Traitement des données
-NumPy 2.2.6 (calculs numériques et vectoriels)
-Pandas 2.3.3 (manipulation et analyse de données tabulaires)
-SciPy 1.15.3 (calculs scientifiques)
+- **Scikit-learn** : 1.7.2 (classification, ACP, clustering, GridSearchCV)  
+- **Joblib** : 1.5.3 (sauvegarde et chargement des modèles)  
+- **Threadpoolctl** : 3.6.0 (gestion des threads pour les calculs parallèles)  
 
-Machine Learning
-Scikit-learn 1.7.2 (classification, ACP, clustering, GridSearchCV)
-Joblib 1.5.3 (sauvegarde et chargement des modèles)
-Threadpoolctl 3.6.0 (gestion des threads pour les calculs parallèles)
+- **Matplotlib** : 3.10.8 (création de graphiques)  
+- **Seaborn** : 0.13.2 (visualisations statistiques avancées)  
+- **Pillow** : 12.1.1 (traitement d'images)  
 
-Visualisation
-Matplotlib 3.10.8 (création de graphiques)
-Seaborn 0.13.2 (visualisations statistiques avancées)
-Pillow 12.1.1 (traitement d'images)
+- **Flask** : 3.1.3 (framework web pour l'application)  
+- **Werkzeug** : 3.1.6 (serveur WSGI)  
+- **Jinja2** : 3.1.6 (moteur de templates HTML)  
 
-Déploiement web
-Flask 3.1.3 (framework web pour l'application)
-Werkzeug 3.1.6 (serveur WSGI)
-Jinja2 3.1.6 (moteur de templates HTML)
-
-Utilitaires
-Tabulate 0.9.0 (formatage de tableaux)
-Colorama 0.4.6 (couleurs dans le terminal)
-Pygments 2.19.2 (coloration syntaxique)
+- **Tabulate** : 0.9.0 (formatage de tableaux)  
+- **Colorama** : 0.4.6 (couleurs dans le terminal)  
+- **Pygments** : 2.19.2 (coloration syntaxique)  
 
 ---
 
