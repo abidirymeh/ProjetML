@@ -33,7 +33,7 @@
   "F32": "RegistrationDate",
   "F33": "NewsletterSubscribed",
   "F34": "LastLoginIP",
-  "F35": "SupportTicketsCount",
+  "F35": "SupportTickets",
   "F36": "SatisfactionScore",
   "F37": "RFMSegment",
   "F38": "AgeCategory",
